@@ -27,8 +27,8 @@ func (s *Publisher) Unsubscribe(o Subscriber) {
 	s.SubscribersList = append(s.SubscribersList[:indexToRemove], s.SubscribersList[indexToRemove+1:]...)
 }
 
-// Fire method to publish an event or message
-func (s *Publisher) Fire(m string) {
+// Publish method to publish an event or message
+func (s *Publisher) Publish(m string) {
 	for _, Subscriber := range s.SubscribersList {
 		Subscriber.Notify(m)
 	}
