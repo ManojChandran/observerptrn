@@ -1,14 +1,14 @@
 # Observer Design Pattern
 This is simple GO package to implement Observer pattern. Observer pattern, also known as publish/subscriber or publish/listener. It is useful when we need to trigger many actions to be performed after an event.
 
-Only interface we need to use the package is:
+Package can be used by implementing the Observer interface.
 ```go
 type Observer interface { 
   Notify(string) 
 } 
 ```
 
-We just need a structure called Publisher with three methods:
+Publisher has three main methods:
 ```go
 type Publisher struct { 
   ObserversList []Observer 
