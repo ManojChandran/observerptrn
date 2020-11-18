@@ -1,19 +1,26 @@
 # Observer Design Pattern
 This is simple GO package to implement Observer pattern. Observer pattern, also known as publish/subscriber or publish/listener. It is useful when we need to trigger many actions to be performed after an event.
 
-Package can be used by implementing the Observer interface.
+# Implementation details
+Main parts of the Observer pattern implementations are as mentioned below.
+
+#### A Observer interface, for the subscribers to implement.
 ```go
 type Observer interface { 
   Notify(string) 
 } 
 ```
-
-Publisher has three main methods:
+#### Struct to hold the Observer list:
 ```go
 type Publisher struct { 
   ObserversList []Observer 
 } 
- 
+```
+#### Publisher has three main methods:
+1) A Method to add new subscribers to the publisher
+2) A Method to remove subscribers from the publisher
+3) A Method to accept message and publish 
+```go 
 func (s *Publisher) Subscribe(o Observer) {} 
  
 func (s *Publisher) Unsubscribe(o Observer) {} 
@@ -26,7 +33,9 @@ func (s *Publisher) Publish(m string) {}
 $ go get github.com/ManojChandran/observerptrn
 ```
 
-# Sample code to implement 
+# Example code to implement 
+
+Below code provide sample implementation of observer pattern
 
 ```go
 package main
@@ -55,19 +64,19 @@ func (h *House) catchFire() {
 	h.Observer.Publish(h.Name)
 }
 
-//
+// Dummy fire service 
 type FireService struct{}
 
-//
+// Notify interface implementation
 func (d *FireService) Notify(data string) {
 	fmt.Printf("\n A Fire service has been called for %s",
 		data)
 }
 
-//
+// Dummy ambulance service
 type AmbulanceService struct{}
 
-//
+// Notify interface implementation
 func (d *AmbulanceService) Notify(data string) {
 	fmt.Printf("\n A Ambulance service has been called for %s",
 		data)
@@ -78,12 +87,17 @@ func main() {
 	fire := &FireService{}
 	ambulance := &AmbulanceService{}
 
+	// Subscribing the service
 	myHouse.Observer.Subscribe(fire)
 	myHouse.Observer.Subscribe(ambulance)
-	fmt.Println("hello")
 
+	// Event
 	myHouse.catchFire()
+
+	// Un subscribing the service
 	myHouse.Observer.Unsubscribe(ambulance)
+	
+	// Event
 	myHouse.catchFire()
 }
 ```
