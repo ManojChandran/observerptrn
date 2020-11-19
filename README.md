@@ -7,7 +7,7 @@ Main parts of the Observer pattern implementations are as mentioned below.
 #### A Observer interface, for the subscribers to implement.
 ```go
 type Observer interface { 
-  Notify(string) 
+  Notify(interface{}) 
 } 
 ```
 #### Struct to hold the Observer list:
@@ -25,7 +25,7 @@ func (s *Publisher) Subscribe(o Observer) {}
  
 func (s *Publisher) Unsubscribe(o Observer) {} 
  
-func (s *Publisher) Publish(m string) {} 
+func (s *Publisher) Publish(m interface{}) {} 
 ```
 
 # Get Package
@@ -68,7 +68,7 @@ func (h *House) catchFire() {
 type FireService struct{}
 
 // Notify interface implementation
-func (d *FireService) Notify(data string) {
+func (d *FireService) Notify(data interface{}) {
 	fmt.Printf("\n A Fire service has been called for %s",
 		data)
 }
@@ -77,7 +77,7 @@ func (d *FireService) Notify(data string) {
 type AmbulanceService struct{}
 
 // Notify interface implementation
-func (d *AmbulanceService) Notify(data string) {
+func (d *AmbulanceService) Notify(data interface{}) {
 	fmt.Printf("\n A Ambulance service has been called for %s",
 		data)
 }
