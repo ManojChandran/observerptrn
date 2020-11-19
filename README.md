@@ -1,6 +1,7 @@
 # Observer Design Pattern
 This is simple GO package to implement Observer pattern. Observer pattern, also known as publish/subscriber or publish/listener. It is useful when we need to trigger many actions to be performed after an event.
 
+
 # Implementation details
 Main parts of the Observer pattern implementations are as mentioned below.
 
