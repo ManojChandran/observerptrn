@@ -5,7 +5,6 @@ package observerptrn
 
 // Subscriber needs to implement this function
 type Subscriber interface {
-	// interface method to implement
 	Notify(interface{})
 }
 
