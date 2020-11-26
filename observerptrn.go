@@ -5,7 +5,7 @@ package observerptrn
 
 // Subscriber needs to implement this function
 type Subscriber interface {
-	Notify(string)
+	Notify(interface{})
 }
 
 // Publisher hold the list of subscriber
